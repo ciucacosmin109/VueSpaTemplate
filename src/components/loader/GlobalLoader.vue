@@ -70,6 +70,7 @@ export default defineComponent({
 
   height: 100px;
   width: 100%;
+  padding: 1em;
 
   .fa-spin {
     font-size: 2em;

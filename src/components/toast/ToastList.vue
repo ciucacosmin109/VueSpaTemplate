@@ -92,8 +92,8 @@ export default defineComponent({
     position: absolute;
     bottom: 1em;
     right: 1em;
-
     width: 30em;
+    max-width: calc(100% - 2em);
 
     display: flex;
     gap: 0.6em;
