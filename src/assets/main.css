@@ -1,0 +1,15 @@
+@import './base.css';
+
+html, body, #app, #app-container {
+  height: 100%;
+}
+
+*:not(body) {
+  transition: 0.3s;
+}
+
+#app-container {
+  color: var(--color-text);
+  background: var(--color-background);
+}
+
