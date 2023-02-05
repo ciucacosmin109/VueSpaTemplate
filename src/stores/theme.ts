@@ -1,5 +1,5 @@
-import { ref, computed } from 'vue';
-import { defineStore } from 'pinia';
+import { ref, computed } from "vue";
+import { defineStore } from "pinia";
 
 export class Theme {
   name!: string;
@@ -27,16 +27,16 @@ const allThemes = [
     cssClass: "blue-theme",
     bootstrapColorMode: "blue",
   }),
-]
+];
 
-export const useThemeStore = defineStore('theme', () => {
+export const useThemeStore = defineStore("theme", () => {
   // State
   const currentTheme = ref(allThemes[1]);
-  
+
   // Actions
   function changeTheme(themeName: string) {
-    currentTheme.value = allThemes.find(x => x.name === themeName) ?? allThemes[0];
+    currentTheme.value = allThemes.find((x) => x.name === themeName) ?? allThemes[0];
   }
 
   return { allThemes, currentTheme, changeTheme };
-})
+});

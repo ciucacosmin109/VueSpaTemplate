@@ -1,6 +1,6 @@
-
 /* router */
-.router-enter-active, .router-leave-active {
+.router-enter-active,
+.router-leave-active {
   transition: all 0.5s ease;
   overflow: hidden;
 }
@@ -16,7 +16,8 @@
 }
 
 /* slide */
-.slide-enter-active, .slide-leave-active {
+.slide-enter-active,
+.slide-leave-active {
   transition: all 0.5s ease;
 }
 
@@ -24,8 +25,7 @@
   opacity: 0;
   transform: translateX(2em);
 }
-.slide-leave-to { 
+.slide-leave-to {
   opacity: 0;
   transform: translateX(14em);
 }
-

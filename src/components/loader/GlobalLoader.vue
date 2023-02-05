@@ -1,6 +1,6 @@
 <template>
   <div v-if="runningOperations > 0" class="loader-backdrop">
-    <div class="loader-container"> 
+    <div class="loader-container">
       <i class="fas fa-spinner fa-spin"></i>
       <span>{{ message }}</span>
     </div>
@@ -24,7 +24,7 @@ export default defineComponent({
     return {
       runningOperations: 0,
       message: "Loading...",
-    }
+    };
   },
   methods: {
     increment() {
@@ -33,7 +33,7 @@ export default defineComponent({
     },
     decrement() {
       this.runningOperations--;
-    }
+    },
   },
   mounted() {
     addEventListener("lodingStarted", this.increment);
@@ -42,7 +42,7 @@ export default defineComponent({
   unmounted() {
     removeEventListener("lodingStarted", this.increment);
     removeEventListener("lodingStopped", this.decrement);
-  }
+  },
 });
 </script>
 
@@ -60,8 +60,9 @@ export default defineComponent({
   justify-content: center;
   align-items: center;
 
-  background-color: rgba(0,0,0,0.2);
+  background-color: rgba(0, 0, 0, 0.2);
 }
+
 .loader-container {
   display: flex;
   justify-content: center;

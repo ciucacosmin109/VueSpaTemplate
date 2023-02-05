@@ -1,5 +1,5 @@
 // Styles
-import './bootstrap.scss'
+import "./bootstrap.scss";
 
 // Scripts
-import 'bootstrap/dist/js/bootstrap.min.js'
+import "bootstrap/dist/js/bootstrap.min.js";

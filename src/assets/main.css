@@ -1,6 +1,9 @@
-@import './base.css';
+@import "./base.css";
 
-html, body, #app, #app-container {
+html,
+body,
+#app,
+#app-container {
   height: 100%;
 }
 
@@ -12,4 +15,3 @@ html, body, #app, #app-container {
   color: var(--color-text);
   background: var(--color-background);
 }
-

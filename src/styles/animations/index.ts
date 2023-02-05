@@ -1,2 +1,2 @@
 // Styles
-import './animations.scss'
+import "./animations.scss";
