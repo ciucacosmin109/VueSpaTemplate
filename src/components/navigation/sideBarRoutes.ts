@@ -9,6 +9,15 @@ export const sideBarRoutes = [
     children: [],
   },
   {
+    icon: "fas fa-adjust",
+    text: "Vuetify demo",
+    route: {
+      name: "vuetifydemo",
+      params: undefined,
+    },
+    children: [],
+  },
+  {
     icon: "fas fa-info-circle",
     text: "About",
     route: {

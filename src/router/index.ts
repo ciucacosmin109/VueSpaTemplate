@@ -30,12 +30,17 @@ const router = createRouter({
       component: () => import("../views/HomeView.vue"),
     },
     {
+      path: "/vuetifydemo",
+      name: "vuetifydemo",
+      component: () => import("../views/VuetifyDemo/VuetifyDemo.vue"),
+    },
+    {
       path: "/about/:param?", // https://router.vuejs.org/guide/essentials/route-matching-syntax.html#optional-parameters
       name: "about",
       component: () => import("../views/AboutView.vue"),
     },
     {
-      path: "/callback", // https://router.vuejs.org/guide/essentials/route-matching-syntax.html#optional-parameters
+      path: "/callback",
       name: "callback",
       component: () => import("../views/OidcCallback/OidcCallback.vue"),
     },

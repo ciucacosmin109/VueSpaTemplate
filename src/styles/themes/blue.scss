@@ -8,7 +8,7 @@
 
   --color-border: rgb(255, 255, 255);
   --color-border-hover: rgb(255, 255, 255);
-  
+
   --color-heading: rgb(255, 255, 255);
   --color-text: rgb(214, 214, 214);
 }
@@ -16,14 +16,14 @@
 // Bootstrap
 [data-bs-theme="blue"] {
   * {
-      --bs-link-color: white;
-      --bs-nav-link-hover-color: lightgray;
+    --bs-link-color: white;
+    --bs-nav-link-hover-color: lightgray;
   }
 
   .progress-bar {
     --bs-progress-bar-bg: #41b883;
   }
-  
+
   .dropdown-menu {
     --bs-body-color: var(--bs-white);
     --bs-body-color-rgb: #{to-rgb($white)};
@@ -35,17 +35,17 @@
     --bs-dropdown-link-active-bg: #{$blue-700};
   }
   .btn-secondary {
-    --bs-btn-bg: #{mix($gray-600, $blue-400, .5 * 1%)};
-    --bs-btn-border-color: #{rgba($white, .25)};
-    --bs-btn-hover-bg: #{darken(mix($gray-600, $blue-400, .5 * 1%), 5%)};
-    --bs-btn-hover-border-color: #{rgba($white, .25)};
-    --bs-btn-active-bg: #{darken(mix($gray-600, $blue-400, .5 * 1%), 10%)};
-    --bs-btn-active-border-color: #{rgba($white, .5)};
-    --bs-btn-focus-border-color: #{rgba($white, .5)};
-    --bs-btn-focus-box-shadow: 0 0 0 .25rem rgba(255, 255, 255, .2);
+    --bs-btn-bg: #{mix($gray-600, $blue-400, 0.5 * 1%)};
+    --bs-btn-border-color: #{rgba($white, 0.25)};
+    --bs-btn-hover-bg: #{darken(mix($gray-600, $blue-400, 0.5 * 1%), 5%)};
+    --bs-btn-hover-border-color: #{rgba($white, 0.25)};
+    --bs-btn-active-bg: #{darken(mix($gray-600, $blue-400, 0.5 * 1%), 10%)};
+    --bs-btn-active-border-color: #{rgba($white, 0.5)};
+    --bs-btn-focus-border-color: #{rgba($white, 0.5)};
+    --bs-btn-focus-box-shadow: 0 0 0 0.25rem rgba(255, 255, 255, 0.2);
   }
-  
+
   .btn-outline-primary {
-    --bs-btn-color: white; 
+    --bs-btn-color: white;
   }
 }

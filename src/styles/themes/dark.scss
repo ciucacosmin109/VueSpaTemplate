@@ -1,36 +1,36 @@
-// App 
+// App
 :root .dark-theme {
-    --color-background: var(--vt-c-black) ;
-    --color-background-soft: var(--vt-c-black-soft);
-    --color-background-mute: var(--vt-c-black-mute);
+  --color-background: var(--vt-c-black);
+  --color-background-soft: var(--vt-c-black-soft);
+  --color-background-mute: var(--vt-c-black-mute);
 
-    --color-border: var(--vt-c-divider-dark-2);
-    --color-border-hover: var(--vt-c-divider-dark-1);
+  --color-border: var(--vt-c-divider-dark-2);
+  --color-border-hover: var(--vt-c-divider-dark-1);
 
-    --color-heading: var(--vt-c-text-dark-1);
-    --color-text: var(--vt-c-text-dark-2);
+  --color-heading: var(--vt-c-text-dark-1);
+  --color-text: var(--vt-c-text-dark-2);
 }
 
 // Bootstrap
 [data-bs-theme="dark"] {
+  --green: #41b883;
+  --light-green: #8bffcb;
 
-    --green: #41b883;
-    --light-green: #8bffcb;
+  * {
+    --bs-nav-pills-link-active-bg: var(--green);
+    --bs-dropdown-link-active-bg: var(--green);
+    --bs-link-color: var(--green);
+    --bs-nav-link-hover-color: var(--light-green);
+    --bs-form-control-bg: var(--vt-c-black);
+  }
 
-    * {
-        --bs-nav-pills-link-active-bg: var(--green);
-        --bs-dropdown-link-active-bg: var(--green);
-        --bs-link-color: var(--green);
-        --bs-nav-link-hover-color: var(--light-green);
-    }
-
-    .btn-outline-primary {
-        --bs-btn-color: var(--green);
-        --bs-btn-border-color: var(--green);
-        --bs-btn-hover-bg: var(--green);
-        --bs-btn-hover-border-color: var(--green);
-        --bs-btn-active-color: #fff;
-        --bs-btn-active-bg: var(--green);
-        --bs-btn-active-border-color: var(--green);
-    }
+  .btn-outline-primary {
+    --bs-btn-color: var(--green);
+    --bs-btn-border-color: var(--green);
+    --bs-btn-hover-bg: var(--green);
+    --bs-btn-hover-border-color: var(--green);
+    --bs-btn-active-color: #fff;
+    --bs-btn-active-bg: var(--green);
+    --bs-btn-active-border-color: var(--green);
+  }
 }
