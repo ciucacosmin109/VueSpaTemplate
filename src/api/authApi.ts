@@ -1,10 +1,10 @@
 import Oidc from "oidc-client";
 
-const appBaseUrl = "http://localhost:5173";
+const appBaseUrl = import.meta.env.VITE_FRONTEND_URL;
 const appCallbacktUrl = "callback";
 const appLogoutRedirectUrl = "about";
 
-const authority = "https://localhost:44390";
+const authority = import.meta.env.VITE_LOGIN_AUTHORITY_URL;
 const clientId = "Vue_App";
 
 function buildUserManager(requestIdToken: boolean = true, requestUserInfo: boolean = true): Oidc.UserManager {
