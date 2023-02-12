@@ -1,28 +1,25 @@
 <template>
-  <div>
-    Signing in ...
-  </div>
+  <div>Signing in ...</div>
 </template>
 
 <script lang="ts">
-import { useAuthenticationStore } from '@/stores/authentication';
-import { defineComponent } from 'vue';
+import { useAuthenticationStore } from "@/stores/authentication";
+import { defineComponent } from "vue";
 export default defineComponent({
   async mounted() {
-    const authStore = useAuthenticationStore();
+    const authStore = useAuthenticationStore(false);
     try {
-      const result = await authStore.userManager.signinRedirectCallback();
-      let returnToUrl = '/';
-      if (result.state !== undefined) { 
+      const result = await authStore.signinRedirectCallback();
+      let returnToUrl = "/";
+      if (result.state !== undefined) {
         returnToUrl = result.state;
       }
       this.$router.push({ path: returnToUrl });
     } catch (e) {
-      this.$router.push({ name: 'error', params: { code: "401" } });
+      this.$router.push({ name: "error", params: { code: "401" } });
     }
-  }
+  },
 });
 </script>
 
-<style lang="scss" scoped>
-</style>
+<style lang="scss" scoped></style>

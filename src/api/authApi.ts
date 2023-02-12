@@ -1,19 +1,34 @@
 import Oidc from "oidc-client";
 
-const userManager = new Oidc.UserManager({
-  authority: "https://localhost:44390",
-  client_id: "Vue_App",
-  client_secret: "secret_app",
+const appBaseUrl = "http://localhost:5173";
+const appCallbacktUrl = "callback";
+const appLogoutRedirectUrl = "about";
 
-  redirect_uri: "http://localhost:5173/callback",
-  response_type: "id_token token",
-  loadUserInfo: true,
+const authority = "https://localhost:44390";
+const clientId = "Vue_App";
 
-  scope: "openid profile multitenancy NetApiCleanTemplate_Api", // "openid profile api1",
-  post_logout_redirect_uri: "http://localhost:5173/about",
-  userStore: new Oidc.WebStorageStateStore({ store: window.localStorage }),
-});
+function buildUserManager(requestIdToken: boolean = true, requestUserInfo: boolean = true): Oidc.UserManager {
+  return new Oidc.UserManager({
+    userStore: new Oidc.WebStorageStateStore({ store: window.localStorage }),
 
+    authority: authority,
+    client_id: clientId,
+
+    response_type: requestIdToken ? "token id_token" : "token",
+    loadUserInfo: requestUserInfo,
+
+    scope:
+      (requestIdToken ? "openid profile tenant " : "") + // openid is mandatory
+      "NetApiCleanTemplate_Api",
+
+    redirect_uri: new URL(appCallbacktUrl, appBaseUrl).href,
+    post_logout_redirect_uri: new URL(appLogoutRedirectUrl, appBaseUrl).href,
+  });
+}
+
+const userManager = buildUserManager();
+
+// Debug
 Oidc.Log.logger = console;
 Oidc.Log.level = Oidc.Log.INFO;
 

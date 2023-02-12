@@ -125,7 +125,7 @@ export default defineComponent({
       this.themeStore.changeTheme(theme);
     },
     async signOut() {
-      await this.authStore.userManager.signoutRedirect();
+      await this.authStore.signoutRedirect();
     },
     async printUserInfo() {
       console.log(this.authStore.user);

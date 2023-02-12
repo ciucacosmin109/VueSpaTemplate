@@ -1,7 +1,7 @@
 import { showToast } from "@/plugins/toaster/toaster";
+import { useAuthenticationStore } from "@/stores/authentication";
 import { ToastType } from "@/stores/toast";
 import axios from "axios";
-import userManager from "./authApi";
 
 const baseAxios = axios.create({
   headers: {
@@ -19,9 +19,9 @@ baseAxios.interceptors.request.use(
     dispatchEvent(loadingStartedEvent());
 
     // Auth
-    const user = await userManager.getUser();
-    if (user) {
-      const authToken = user.access_token;
+    const authStore = useAuthenticationStore();
+    if (authStore.isAuthenticated && authStore.user) {
+      const authToken = authStore.user.access_token;
       if (authToken) {
         config.headers.Authorization = `Bearer ${authToken}`;
       }

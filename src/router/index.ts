@@ -62,19 +62,23 @@ const router = createRouter({
 
 // Authentication middleware
 router.beforeEach(async (to, from, next) => {
+  if (!to.matched.some((record) => record.meta.requiresAuth)) {
+    // No auth required. We can navigate
+    next();
+    return;
+  }
+
   const authStore = useAuthenticationStore();
   if (authStore.isAuthenticated) {
     // Already signed in, we can navigate anywhere
     next();
-  } else if (to.matched.some((record) => record.meta.requiresAuth)) {
-    // Authentication is required. Trigger the sign in process, including the return URI
-    await authStore.authenticate(to.path);
-    console.log("Authenticating a protected url: " + to.path);
-    next();
-  } else {
-    // No auth required. We can navigate
-    next();
+    return;
   }
+
+  // Authentication is required. Trigger the sign in process, including the return URI
+  console.log("Authenticating a protected url: " + to.path);
+  await authStore.ensureAuthenticated(to.path);
+  next();
 });
 
 // Title middleware

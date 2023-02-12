@@ -2,10 +2,22 @@ import { defineStore } from "pinia";
 import userManager from "@/api/authApi";
 import type { User } from "oidc-client";
 
-export const useAuthenticationStore = defineStore("authentication", {
+let called = false;
+async function getUserFromStorage(): Promise<User | null> {
+  called = true;
+  try {
+    let user = await userManager.getUser();
+    return user;
+  } catch (err) {
+    console.log("Error while getting the current user:", err);
+    return null;
+  }
+}
+
+// Define the store
+const buildStore = defineStore("authentication", {
   state: () => {
     return {
-      userManager: userManager,
       user: null as User | null,
     };
   },
@@ -15,28 +27,42 @@ export const useAuthenticationStore = defineStore("authentication", {
     },
   },
   actions: {
-    async authenticate(returnUrl?: string) {
-      const user = await this.getUser(); // Check if the user details are in local storage
-      if (!!user) {
+    async ensureAuthenticated(returnUrl?: string) {
+      const user = await getUserFromStorage(); // Check if the user details are in local storage
+      if (!!user && user.expires_at < Date.now()) {
         this.user = user;
       } else {
         await this.signIn(returnUrl);
       }
     },
-    async getUser() {
-      try {
-        let user = await this.userManager.getUser();
-        return user;
-      } catch (err) {
-        console.log("Error while getting the current user:", err);
-      }
-    },
+
     async signIn(returnUrl?: string) {
       if (returnUrl != null) {
-        await this.userManager.signinRedirect({ state: returnUrl });
+        await userManager.signinRedirect({ state: returnUrl });
       } else {
-        await this.userManager.signinRedirect();
+        await userManager.signinRedirect();
       }
+    },
+
+    async signinRedirectCallback(): Promise<User> {
+      return await userManager.signinRedirectCallback();
+    },
+    async signoutRedirect() {
+      await userManager.signoutRedirect();
     },
   },
 });
+
+// Add a wrapper that gets the user when the store is initialized the first time
+export const useAuthenticationStore = (getUser: boolean = true) => {
+  // Build the store
+  const store = buildStore();
+
+  // Get the current user and put it in the store
+  if (getUser && !called) {
+    getUserFromStorage().then((user) => (store.user = user));
+  }
+
+  // Return the store
+  return store;
+};
