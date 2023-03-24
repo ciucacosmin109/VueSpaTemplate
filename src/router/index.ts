@@ -78,7 +78,7 @@ router.beforeEach(async (to, from, next) => {
   // Authentication is required. Trigger the sign in process, including the return URI
   console.log("Authenticating a protected url: " + to.path);
   await authStore.ensureAuthenticated(to.path);
-  next();
+  next(false);
 });
 
 // Title middleware

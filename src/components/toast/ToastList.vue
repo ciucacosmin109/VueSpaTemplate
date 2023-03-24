@@ -81,7 +81,7 @@ export default defineComponent({
     },
   },
   mounted() {
-    //this.stepInterval = setInterval(() => this.toastStore.incrementToastTimes(timeStep), timeStep);
+    this.stepInterval = setInterval(() => this.toastStore.incrementToastTimes(timeStep), timeStep);
     this.$emitter.on("showToast", this.toastHandler);
   },
   unmounted() {

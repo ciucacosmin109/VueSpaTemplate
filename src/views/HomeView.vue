@@ -11,6 +11,8 @@ import { defineComponent } from 'vue';
 const demoApi = baseApiFactory("/api/Demo/TestApiAuthorization");
 const demoAdminApi = baseApiFactory("/api/Demo/TestAdminAuthorization");
 
+const demoRightApi = baseApiFactory("/api/Demo/TestRightAuthorization");
+
 export default defineComponent({
   async mounted() { 
     const res = await demoApi.getAll<string>();
@@ -21,6 +23,11 @@ export default defineComponent({
     const res2 = await demoAdminApi.getAll<string>();
     if(res2.ok) {
       this.$showSuccess("Fetched some useless data 2");
+    }
+
+    const res3 = await demoRightApi.getAll<string>();
+    if(res3.ok) {
+      this.$showSuccess("Fetched some useless data 3 (right)");
     }
 
     // await demoApi.put<unknown>({});

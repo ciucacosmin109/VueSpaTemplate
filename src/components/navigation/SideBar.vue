@@ -63,7 +63,7 @@
           aria-expanded="false"
         >
           <img src="/avatar.jpg" alt="" class="rounded-circle me-2" width="32" height="32" />
-          <strong>User</strong>
+          <strong> {{ userName }} ({{ tenantName }}) </strong>
         </button>
         <ul class="w-100 dropdown-menu shadow" aria-labelledby="dropdownUser1">
           <!-- With children :D -->
@@ -90,7 +90,7 @@
             <hr class="dropdown-divider" />
           </li>
           <li class="dropdown-item cursor-pointer" @click="printUserInfo">Print user info</li>
-          <li class="dropdown-item cursor-pointer" @click="signOut">Sign out</li>
+          <li v-if="authStore.isAuthenticated" class="dropdown-item cursor-pointer" @click="signOut">Sign out</li>
         </ul>
       </div>
     </div>
@@ -131,6 +131,23 @@ export default defineComponent({
       console.log(this.authStore.user);
     },
   },
+  computed: {
+    userName(): string {
+      return this.authStore.isAuthenticated 
+        ? (this.authStore.user?.profile?.name ?? "unknown") 
+        : "anonymous";
+    },
+    tenantName(): string {
+      if(this.authStore.isAuthenticated){
+        const tenant = this.authStore.user?.profile?.tenant;
+        if(tenant === "" || tenant == null) {
+          return "default";
+        }
+        return tenant;
+      }
+      return "n\\a"
+    }
+  }
 });
 </script>
 
