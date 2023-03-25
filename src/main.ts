@@ -2,6 +2,7 @@ import { createApp } from "vue";
 import { createPinia } from "pinia";
 import { emitterPlugin } from "./plugins/eventBus/eventBus";
 import { toasterPlugin } from "./plugins/toaster/toaster";
+import { popupPlugin } from "./plugins/popup/popup";
 
 // Vuetify
 import "vuetify/styles";
@@ -51,8 +52,9 @@ const vuetify = createVuetify({
 const app = createApp(App);
 app.use(pinia);
 app.use(router);
-//app.use(vuetify);
+// app.use(vuetify);
 app.use(emitterPlugin);
 app.use(toasterPlugin);
+app.use(popupPlugin);
 
 app.mount("#app");

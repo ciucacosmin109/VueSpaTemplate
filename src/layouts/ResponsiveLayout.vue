@@ -13,6 +13,9 @@
     <!-- Toasts -->
     <ToastList />
 
+    <!-- Popups -->
+    <GlobalPopup />
+
     <!-- Loader -->
     <GlobalLoader />
   </div>
@@ -24,6 +27,7 @@ import SideBar from "../components/navigation/SideBar.vue";
 import NavigationBar from "@/components/navigation/NavigationBar.vue";
 import ToastList from "../components/toast/ToastList.vue";
 import GlobalLoader from "@/components/loader/GlobalLoader.vue";
+import GlobalPopup from "@/components/popup/GlobalPopup.vue";
 
 export default defineComponent({
   components: {
@@ -31,6 +35,7 @@ export default defineComponent({
     NavigationBar,
     ToastList,
     GlobalLoader,
+    GlobalPopup,
   },
   data() {
     return {
