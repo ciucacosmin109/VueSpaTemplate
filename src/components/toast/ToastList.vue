@@ -7,7 +7,13 @@
       :class="getToastColors(toast.type)"
     >
       <div class="custom-toast-progress-bar" :style="`width: ${(toast.elapsedTime / toast.totalTime) * 100}%`"></div>
-      <button type="button" class="custom-toast-btn btn-close btn-close-white"></button>
+      <button
+        @click="
+          toast.elapsedTime = 99999;
+          toastStore.incrementToastTimes(0);
+        "
+        class="custom-toast-btn btn-close btn-close-white"
+      ></button>
 
       <div class="custom-toast-body overflow-auto">
         <i :class="getToastIcon(toast.type)"></i>
@@ -92,6 +98,23 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
+/* Bootstrap-Vuetify fix */
+.text-white {
+  color: white !important;
+}
+.text-black {
+  color: black !important;
+}
+.bg-warning {
+  background-color: rgba(var(--bs-warning-rgb), var(--bs-bg-opacity)) !important;
+}
+.bg-success {
+  background-color: rgba(var(--bs-success-rgb), var(--bs-bg-opacity)) !important;
+}
+.bg-primary {
+  background-color: rgba(var(--bs-primary-rgb), var(--bs-bg-opacity)) !important;
+}
+
 /* Style */
 .custom-toast-list {
   z-index: 500;

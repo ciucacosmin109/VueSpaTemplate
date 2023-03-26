@@ -59,7 +59,6 @@ export default defineComponent({
       default: false,
     },
   },
-  data() {},
   methods: {
     confirm() {
       this.$emit("confirm");
