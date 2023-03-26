@@ -6,8 +6,13 @@
     </div>
 
     <!-- Content -->
-    <div class="flex-grow-1 p-3" :class="contentOverflowClass">
-      <slot></slot>
+    <div class="flex-grow-1 p-3 pt-2 d-flex flex-column" :class="contentOverflowClass">
+      <div>
+        <Breadcrumb />
+      </div>
+      <div class="flex-grow-1 minh-0">
+        <slot></slot>
+      </div>
     </div>
 
     <!-- Toasts -->
@@ -28,6 +33,7 @@ import NavigationBar from "@/components/navigation/NavigationBar.vue";
 import ToastList from "../components/toast/ToastList.vue";
 import GlobalLoader from "@/components/loader/GlobalLoader.vue";
 import GlobalPopup from "@/components/popup/GlobalPopup.vue";
+import Breadcrumb from "@/components/breadcrumb/Breadcrumb.vue";
 
 export default defineComponent({
   components: {
@@ -36,6 +42,7 @@ export default defineComponent({
     ToastList,
     GlobalLoader,
     GlobalPopup,
+    Breadcrumb,
   },
   data() {
     return {
@@ -77,5 +84,8 @@ export default defineComponent({
 .overflow-custom {
   overflow-y: scroll;
   overflow-x: hidden;
+}
+.minh-0 {
+  min-height: 0;
 }
 </style>

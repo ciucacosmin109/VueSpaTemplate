@@ -1,6 +1,8 @@
 import { loadingStartedEvent, loadingStoppedEvent } from "@/api/baseAxios";
 import { useAuthenticationStore } from "@/stores/authentication";
+import { useBreadcrumbStore } from "@/stores/breadcrumb";
 import { createRouter, createWebHistory } from "vue-router";
+import { routes } from "./routes";
 
 // This can be directly added to any of your `.ts` files like `router.ts`
 // It can also be added to a `.d.ts` file, in which case you will need to add an export
@@ -16,48 +18,7 @@ import { createRouter, createWebHistory } from "vue-router";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
-  routes: [
-    {
-      path: "/",
-      name: "home",
-      meta: {
-        title: "Homepage",
-        requiresAuth: true,
-      },
-      // route level code-splitting
-      // this generates a separate chunk (Home.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
-      component: () => import("../views/HomeView.vue"),
-    },
-    {
-      path: "/vuetifydemo",
-      name: "vuetifydemo",
-      component: () => import("../views/VuetifyDemo/VuetifyDemo.vue"),
-    },
-    {
-      path: "/about/:param?", // https://router.vuejs.org/guide/essentials/route-matching-syntax.html#optional-parameters
-      name: "about",
-      component: () => import("../views/AboutView.vue"),
-    },
-    {
-      path: "/callback",
-      name: "callback",
-      component: () => import("../views/OidcCallback/OidcCallback.vue"),
-    },
-    {
-      path: "/error/:code(\\d+)",
-      name: "error",
-      component: () => import("../views/Error/ErrorView.vue"),
-    },
-    {
-      // Not found handler
-      path: "/:pathMatch(.*)*",
-      meta: {
-        error: 404,
-      },
-      component: () => import("../views/Error/ErrorView.vue"),
-    },
-  ],
+  routes: routes,
 });
 
 // Loader middleware
@@ -100,9 +61,14 @@ router.beforeEach((to, from, next) => {
   const title = to.meta.title;
   const defaultTitle = "Vue app";
 
-  // If the route has a title, set it as the page title of the document/page
+  // If the route has a title, set it
   if (title) {
     document.title = title.toString() + " - " + defaultTitle;
+
+    // Set the breadcrumb
+    const breadcrumbStore = useBreadcrumbStore();
+    breadcrumbStore.clear();
+    breadcrumbStore.append(title.toString());
   } else {
     document.title = defaultTitle;
   }

@@ -30,12 +30,11 @@ export default defineComponent({
     increment() {
       this.runningOperations++;
       this.message = getRandomMessage();
-
-      console.log("+", this.runningOperations);
+      //console.log("+", this.runningOperations);
     },
     decrement() {
       this.runningOperations--;
-      console.log("-", this.runningOperations);
+      //console.log("-", this.runningOperations);
     },
   },
   mounted() {

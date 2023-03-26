@@ -1,6 +1,6 @@
 <template>
   <div>
-    <span>This is an about page {{ $route.params.param }}</span>
+    <div>This is an about page {{ $route.params.param }}</div>
     <button class="btn btn-primary" @click="askUserTest">Show popup</button>
     <Popup title="Demo popup" :visible="popupVisible" @close="popupVisible = false">Test 123</Popup>
   </div>
@@ -21,16 +21,20 @@ export default defineComponent({
   },
   methods: {
     async askUserTest() {
-      const ok = await this.$askUser("I have a question for you", "Do you want to open a popup ?");
-      if (ok) {
-        this.popupVisible = true;
-      } else {
-        this.$showWarning("You canceled the operation !");
+      let ok = await this.$askUser("I have a question for you", "Do you want to open a popup ?");
+      while (!ok) {
+        ok = await this.$askUser(":((", "PWEEEEEASE");
       }
+      this.popupVisible = true;
     },
   },
   mounted() {
     console.log("mounted the about page");
+
+    if (this.$route.params.param) {
+      this.$breadcrumbStore.updateIndex(0, (x) => (x.location = { name: "about", params: { param: "" } }));
+      this.$breadcrumbStore.append(this.$route.params.param.toString());
+    }
   },
 });
 </script>

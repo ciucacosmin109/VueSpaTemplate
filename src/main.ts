@@ -3,6 +3,7 @@ import { createPinia } from "pinia";
 import { emitterPlugin } from "./plugins/eventBus/eventBus";
 import { toasterPlugin } from "./plugins/toaster/toaster";
 import { popupPlugin } from "./plugins/popup/popup";
+import { breadcrumbPlugin } from "./plugins/breadcrumb/breadcrumb";
 
 // Vuetify
 import "vuetify/styles";
@@ -57,5 +58,6 @@ app.use(vuetify);
 app.use(emitterPlugin);
 app.use(toasterPlugin);
 app.use(popupPlugin);
+app.use(breadcrumbPlugin);
 
 app.mount("#app");

@@ -130,7 +130,7 @@ export default defineComponent({
   gap: 0.5em;
 }
 :deep(.grid-body) {
-  min-height: 10em;
+  min-height: 5em;
 
   // header
   thead {

@@ -2,11 +2,11 @@
   <nav class="h-100 shadow">
     <div class="h-100 d-flex flex-column p-2" style="width: 200px">
       <!-- Logo -->
-      <div class="navbar-brand">
+      <div class="navbar-brand mb-3">
         <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="32" height="32" />
         <span class="fs-4 ms-3">Vue app</span>
       </div>
-      <hr />
+      <!-- <hr /> -->
 
       <!-- Links -->
       <ul class="flex-grow-1 nav nav-pills d-flex flex-column">
