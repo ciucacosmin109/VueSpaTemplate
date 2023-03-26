@@ -60,15 +60,27 @@ const router = createRouter({
   ],
 });
 
+// Loader middleware
+router.beforeEach((to, from, next) => {
+  // Loader
+  dispatchEvent(loadingStartedEvent());
+
+  // Continue resolving the route
+  next();
+});
+
 // Authentication middleware
 router.beforeEach(async (to, from, next) => {
+  // Init the auth store
+  const authStore = useAuthenticationStore();
+  await authStore.loadUserFromStorage();
+
   if (!to.matched.some((record) => record.meta.requiresAuth)) {
     // No auth required. We can navigate
     next();
     return;
   }
 
-  const authStore = useAuthenticationStore();
   if (authStore.isAuthenticated) {
     // Already signed in, we can navigate anywhere
     next();
@@ -77,7 +89,7 @@ router.beforeEach(async (to, from, next) => {
 
   // Authentication is required. Trigger the sign in process, including the return URI
   console.log("Authenticating a protected url: " + to.path);
-  await authStore.ensureAuthenticated(to.path);
+  await authStore.signIn(to.path);
   next(false);
 });
 
@@ -100,13 +112,6 @@ router.beforeEach((to, from, next) => {
 });
 
 // Loader middleware
-router.beforeEach((to, from, next) => {
-  // Loader
-  dispatchEvent(loadingStartedEvent());
-
-  // Continue resolving the route
-  next();
-});
 router.afterEach((to, from) => {
   // When navigating to the same route, the beforeEach will not be called
   const isNavigatingToOtherRoute =

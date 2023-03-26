@@ -125,7 +125,7 @@ export default defineComponent({
       this.themeStore.changeTheme(theme);
     },
     async signOut() {
-      await this.authStore.signoutRedirect();
+      await this.authStore.signOut();
     },
     async printUserInfo() {
       console.log(this.authStore.user);
@@ -133,21 +133,19 @@ export default defineComponent({
   },
   computed: {
     userName(): string {
-      return this.authStore.isAuthenticated 
-        ? (this.authStore.user?.profile?.name ?? "unknown") 
-        : "anonymous";
+      return this.authStore.isAuthenticated ? this.authStore.user?.profile?.name ?? "unknown" : "anonymous";
     },
     tenantName(): string {
-      if(this.authStore.isAuthenticated){
+      if (this.authStore.isAuthenticated) {
         const tenant = this.authStore.user?.profile?.tenant;
-        if(tenant === "" || tenant == null) {
+        if (tenant === "" || tenant == null) {
           return "default";
         }
         return tenant;
       }
-      return "n\\a"
-    }
-  }
+      return "n\\a";
+    },
+  },
 });
 </script>
 

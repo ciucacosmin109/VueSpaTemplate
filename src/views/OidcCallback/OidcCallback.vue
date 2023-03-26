@@ -9,7 +9,7 @@ export default defineComponent({
   async mounted() {
     const authStore = useAuthenticationStore(false);
     try {
-      const result = await authStore.signinRedirectCallback();
+      const result = await authStore.signInCallback();
       let returnToUrl = "/";
       if (result.state !== undefined) {
         returnToUrl = result.state;

@@ -23,38 +23,50 @@ const buildStore = defineStore("authentication", {
   },
   getters: {
     isAuthenticated(): boolean {
-      return this.user != null;
+      return this.user != null && this.user.expires_at < Date.now();
     },
   },
   actions: {
-    async ensureAuthenticated(returnUrl?: string) {
+    // Loads the user object from the session storage
+    async loadUserFromStorage() {
+      if (this.isAuthenticated) {
+        return;
+      }
+
       const user = await getUserFromStorage(); // Check if the user details are in local storage
       if (!!user && user.expires_at < Date.now()) {
         this.user = user;
       } else {
-        await this.signIn(returnUrl);
+        this.user = null;
       }
     },
 
+    // Redirects the browser to idsrv (login), if you are not authenticated
     async signIn(returnUrl?: string) {
+      if (this.isAuthenticated) {
+        return;
+      }
+
       if (returnUrl != null) {
         await userManager.signinRedirect({ state: returnUrl });
       } else {
         await userManager.signinRedirect();
       }
     },
-
-    async signinRedirectCallback(): Promise<User> {
+    // Extracts the user from the url provided by idsrv
+    async signInCallback(): Promise<User> {
       return await userManager.signinRedirectCallback();
     },
-    async signoutRedirect() {
+
+    // Redirects the browser to idsrv (logout)
+    async signOut() {
       await userManager.signoutRedirect();
     },
   },
 });
 
 // Add a wrapper that gets the user when the store is initialized the first time
-export const useAuthenticationStore = (getUser: boolean = true) => {
+export const useAuthenticationStore = (getUser: boolean = false) => {
   // Build the store
   const store = buildStore();
 
