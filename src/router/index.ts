@@ -92,4 +92,10 @@ router.afterEach((to, from) => {
   }
 });
 
+// Error middleware
+router.onError((err, to, from) => {
+  // Loader
+  dispatchEvent(loadingStoppedEvent());
+});
+
 export default router;

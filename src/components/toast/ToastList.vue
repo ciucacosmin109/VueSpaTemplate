@@ -37,6 +37,7 @@ import { defineComponent, TransitionGroup } from "vue";
 const timeStep = 250;
 
 export default defineComponent({
+  components: { TransitionGroup },
   data() {
     const toastStore = useToastStore();
 

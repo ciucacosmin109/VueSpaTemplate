@@ -77,6 +77,7 @@
                 <!-- Dropdown menu links -->
                 <li
                   v-for="themeName of allThemes.map((x) => x.name)"
+                  :key="themeName"
                   class="dropdown-item cursor-pointer"
                   :class="currentTheme.name === themeName ? 'active' : ''"
                   @click="changeTheme(themeName)"
@@ -102,7 +103,6 @@ import { useAuthenticationStore } from "@/stores/authentication";
 import { useThemeStore } from "@/stores/theme";
 import { storeToRefs } from "pinia";
 import { defineComponent } from "vue";
-import { RouterLink } from "vue-router";
 import { sideBarRoutes } from "./sideBarRoutes";
 
 export default defineComponent({
@@ -133,7 +133,7 @@ export default defineComponent({
   },
   computed: {
     userName(): string {
-      return this.authStore.isAuthenticated ? this.authStore.user?.profile?.name ?? "unknown" : "anonymous";
+      return this.authStore.isAuthenticated ? (this.authStore.user?.profile?.name ?? "unknown") : "anonymous";
     },
     tenantName(): string {
       if (this.authStore.isAuthenticated) {
@@ -155,6 +155,6 @@ export default defineComponent({
   user-select: none;
 }
 .partially-active {
-  border: 1px solid var(--bs-nav-pills-link-active-bg) !important;
+  border: 1px solid var(--color-selection-bg) !important;
 }
 </style>

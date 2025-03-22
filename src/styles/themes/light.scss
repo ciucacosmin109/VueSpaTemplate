@@ -1,5 +1,5 @@
 // App
-:root .dark-theme {
+:root .light-theme {
   --color-primary: #41b883;
   --color-primary-light: #56d49c;
   --color-primary-dark: #359d6e;
@@ -10,26 +10,15 @@
 
   --color-selection-bg: var(--color-primary);
   --color-selection-text: white;
-
-  // others
-  --color-background: var(--vt-c-black);
-  --color-background-soft: var(--vt-c-black-soft);
-  --color-background-mute: var(--vt-c-black-mute);
-
-  --color-border: var(--vt-c-divider-dark-2);
-  --color-border-hover: var(--vt-c-divider-dark-1);
-
-  --color-heading: var(--vt-c-text-dark-1);
-  --color-text: var(--vt-c-text-dark-2);
 }
 
 // Bootstrap
-[data-bs-theme="dark"] {
+[data-bs-theme="light"] {
   * {
-    --bs-nav-pills-link-active-bg: var(--color-primary);
-    --bs-dropdown-link-active-bg: var(--color-primary);
-    --bs-link-color: var(--color-primary);
-    --bs-nav-link-hover-color: var(--color-primary-light);
+    --bs-nav-pills-link-active-bg: var(--color-selection-bg);
+    --bs-dropdown-link-active-bg: var(--color-selection-bg);
+    --bs-link-color: var(--color-selection-bg);
+    --bs-nav-link-hover-color: var(--color-hover-text);
     --bs-form-control-bg: var(--vt-c-black);
   }
 

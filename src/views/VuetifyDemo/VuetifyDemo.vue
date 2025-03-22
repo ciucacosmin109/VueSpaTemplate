@@ -26,6 +26,7 @@ export default defineComponent({
       ],
       desserts: [
         {
+          id: 1,
           name: "Frozen Yogurt",
           calories: 159,
           fat: 6.0,
@@ -34,6 +35,7 @@ export default defineComponent({
           iron: 1,
         },
         {
+          id: 2,
           name: "Frozen Yogurt",
           calories: 159,
           fat: 6.0,
@@ -42,6 +44,7 @@ export default defineComponent({
           iron: 1,
         },
         {
+          id: 3,
           name: "Frozen Yogurt",
           calories: 159,
           fat: 6.0,
@@ -50,6 +53,7 @@ export default defineComponent({
           iron: 1,
         },
         {
+          id: 4,
           name: "Frozen Yogurt",
           calories: 159,
           fat: 6.0,
@@ -58,6 +62,7 @@ export default defineComponent({
           iron: 1,
         },
         {
+          id: 5,
           name: "Frozen Yogurt",
           calories: 159,
           fat: 6.0,
@@ -66,6 +71,7 @@ export default defineComponent({
           iron: 1,
         },
         {
+          id: 6,
           name: "Frozen Yogurt",
           calories: 159,
           fat: 6.0,
@@ -74,118 +80,7 @@ export default defineComponent({
           iron: 1,
         },
         {
-          name: "Frozen Yogurt",
-          calories: 159,
-          fat: 6.0,
-          carbs: 24,
-          protein: 4.0,
-          iron: 1,
-        },
-        {
-          name: "Frozen Yogurt",
-          calories: 159,
-          fat: 6.0,
-          carbs: 24,
-          protein: 4.0,
-          iron: 1,
-        },
-        {
-          name: "Frozen Yogurt",
-          calories: 159,
-          fat: 6.0,
-          carbs: 24,
-          protein: 4.0,
-          iron: 1,
-        },
-        {
-          name: "Frozen Yogurt",
-          calories: 159,
-          fat: 6.0,
-          carbs: 24,
-          protein: 4.0,
-          iron: 1,
-        },
-        {
-          name: "Frozen Yogurt",
-          calories: 159,
-          fat: 6.0,
-          carbs: 24,
-          protein: 4.0,
-          iron: 1,
-        },
-        {
-          name: "Frozen Yogurt",
-          calories: 159,
-          fat: 6.0,
-          carbs: 24,
-          protein: 4.0,
-          iron: 1,
-        },
-        {
-          name: "Frozen Yogurt",
-          calories: 159,
-          fat: 6.0,
-          carbs: 24,
-          protein: 4.0,
-          iron: 1,
-        },
-        {
-          name: "Frozen Yogurt",
-          calories: 159,
-          fat: 6.0,
-          carbs: 24,
-          protein: 4.0,
-          iron: 1,
-        },
-        {
-          name: "Frozen Yogurt",
-          calories: 159,
-          fat: 6.0,
-          carbs: 24,
-          protein: 4.0,
-          iron: 1,
-        },
-        {
-          name: "Frozen Yogurt",
-          calories: 159,
-          fat: 6.0,
-          carbs: 24,
-          protein: 4.0,
-          iron: 1,
-        },
-        {
-          name: "Frozen Yogurt",
-          calories: 159,
-          fat: 6.0,
-          carbs: 24,
-          protein: 4.0,
-          iron: 1,
-        },
-        {
-          name: "Frozen Yogurt",
-          calories: 159,
-          fat: 6.0,
-          carbs: 24,
-          protein: 4.0,
-          iron: 1,
-        },
-        {
-          name: "Frozen Yogurt",
-          calories: 159,
-          fat: 6.0,
-          carbs: 24,
-          protein: 4.0,
-          iron: 1,
-        },
-        {
-          name: "Frozen Yogurt",
-          calories: 159,
-          fat: 6.0,
-          carbs: 24,
-          protein: 4.0,
-          iron: 1,
-        },
-        {
+          id: 7,
           name: "Ice cream sandwich",
           calories: 237,
           fat: 9.0,
@@ -194,6 +89,7 @@ export default defineComponent({
           iron: 1,
         },
         {
+          id: 8,
           name: "Honeycomb",
           calories: 408,
           fat: 3.2,
@@ -202,6 +98,7 @@ export default defineComponent({
           iron: 45,
         },
         {
+          id: 9,
           name: "Donut",
           calories: 452,
           fat: 25.0,
@@ -210,6 +107,7 @@ export default defineComponent({
           iron: 22,
         },
         {
+          id: 10,
           name: "KitKat",
           calories: 518,
           fat: 26.0,
@@ -221,7 +119,7 @@ export default defineComponent({
     };
   },
   methods: {
-    rowClicked(item: any) {
+    rowClicked(item: unknown) {
       console.log({ ...item });
     },
   },

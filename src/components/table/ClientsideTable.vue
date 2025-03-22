@@ -40,12 +40,12 @@
         :group-by="groupBy"
       >
         <template v-slot:item="{ item }">
-          <tr class :class="selectedRows.indexOf(item.value) > -1 ? 'selected' : ''" @click="rowClicked(item.value)">
+          <tr class :class="selectedRows.indexOf(item.id ?? -1) > -1 ? 'selected' : ''" @click="rowClicked(item)">
             <td v-if="groupByKey"></td>
-            <td v-if="showCheckboxes" @click.stop="rowClicked(item.value)">
-              <input type="checkbox" :checked="selectedRows.indexOf(item.value) > -1" />
+            <td v-if="showCheckboxes" @click.stop="rowClicked(item)">
+              <input type="checkbox" :checked="selectedRows.indexOf(item.id ?? -1) > -1" />
             </td>
-            <td v-for="col in headers">{{ item.columns[col.key] }}</td>
+            <td v-for="(col, idx) in headers" :key="idx">{{ item[col.key] ?? "n\\a" }}</td>
           </tr>
         </template>
 
@@ -70,8 +70,7 @@
 <script lang="ts">
 import { defineComponent, type PropType } from "vue";
 
-import { VDataTable } from "vuetify/labs/VDataTable";
-import { VBtn } from "vuetify/components";
+import { VBtn, VDataTable } from "vuetify/components";
 import type { DataTableHeader, SortItem } from "./vuetifyTableTypes";
 
 export default defineComponent({
@@ -94,7 +93,7 @@ export default defineComponent({
   },
   data() {
     return {
-      selectedRows: [] as unknown[],
+      selectedRows: [] as number[],
       search: "",
       sortBy: [] as SortItem[],
       groupByKey: "",
@@ -112,7 +111,7 @@ export default defineComponent({
   },
   methods: {
     rowClicked(item: unknown) {
-      this.selectedRows = [item];
+      this.selectedRows = [item?.id ?? 0];
       this.$emit("rowClicked", item);
     },
   },
@@ -151,12 +150,18 @@ export default defineComponent({
     .v-table__wrapper {
       flex-grow: 1;
     }
+    .v-pagination__list {
+      margin-bottom: 0;
+    }
+    hr.v-divider {
+      margin: 0;
+    }
   }
 
   // borders
   th,
   td {
-    border: 1px solid #383838;
+    _border: 1px solid #e3e3e3;
   }
 
   // smaller elements
@@ -181,8 +186,9 @@ export default defineComponent({
   }
 
   tr.selected {
-    --v-theme-surface: --bs-nav-pills-link-active-bg;
-    background-color: var(--bs-nav-pills-link-active-bg);
+    --v-theme-surface: --color-selection-bg;
+    background-color: var(--color-selection-bg);
+    color: var(--color-selection-text);
   }
 }
 

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div>This is an about page {{ $route.params.param }}</div>
+    <div class="mb-3">This is an about page {{ $route.params.param }}</div>
     <button class="btn btn-primary" @click="askUserTest">Show popup</button>
     <Popup title="Demo popup" :visible="popupVisible" @close="popupVisible = false">Test 123</Popup>
   </div>

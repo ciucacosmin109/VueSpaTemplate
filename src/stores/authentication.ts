@@ -6,7 +6,7 @@ let called = false;
 async function getUserFromStorage(): Promise<User | null> {
   called = true;
   try {
-    let user = await userManager.getUser();
+    const user = await userManager.getUser();
     return user;
   } catch (err) {
     console.log("Error while getting the current user:", err);
@@ -47,10 +47,14 @@ const buildStore = defineStore("authentication", {
         return;
       }
 
-      if (returnUrl != null) {
-        await userManager.signinRedirect({ state: returnUrl });
-      } else {
-        await userManager.signinRedirect();
+      try {
+        if (returnUrl != null) {
+          await userManager.signinRedirect({ state: returnUrl });
+        } else {
+          await userManager.signinRedirect();
+        }
+      } catch {
+        console.error("Authentication error");
       }
     },
     // Extracts the user from the url provided by idsrv

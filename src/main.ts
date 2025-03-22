@@ -38,7 +38,7 @@ const vuetify = createVuetify({
   //   VDataTable,
   // },
   // directives: directives,
-  theme: { defaultTheme: "dark" },
+  theme: { defaultTheme: "light" },
   icons: {
     defaultSet: "fa",
     aliases,

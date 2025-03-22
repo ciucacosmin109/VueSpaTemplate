@@ -73,7 +73,6 @@
 import { useThemeStore } from "@/stores/theme";
 import { storeToRefs } from "pinia";
 import { defineComponent } from "vue";
-import { RouterLink } from "vue-router";
 import { sideBarRoutes } from "./sideBarRoutes";
 
 //const themeStore = useThemeStore();

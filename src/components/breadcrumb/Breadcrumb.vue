@@ -1,6 +1,6 @@
 <template>
   <div class="d-flex align-items-center pb-3">
-    <div class="d-flex align-items-center" v-for="(item, idx) in breadcrumbStore.path">
+    <div class="d-flex align-items-center" v-for="(item, idx) in breadcrumbStore.path" :key="idx">
       <button
         class="border-0"
         :class="[
@@ -48,8 +48,8 @@ export default defineComponent({
       } else if (item.location) {
         this.$router.push({
           name: item.location.name,
-          params: item.location.params as any,
-          query: item.location.query as any,
+          params: item.location.params,
+          query: item.location.query,
         });
       }
       this.breadcrumbStore.path = this.breadcrumbStore.path.filter((x, i) => i < idx);
